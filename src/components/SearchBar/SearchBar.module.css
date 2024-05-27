@@ -1,5 +1,7 @@
 .header {
-    background-color: aqua;
+    display: block;
+    margin: 0;
+    background-color: blue;
 }
 
 .form {

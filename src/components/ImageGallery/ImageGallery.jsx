@@ -1,14 +1,17 @@
 
 
-export default function ImageGallery() {
+export default function ImageGallery({ items }) {
 
     return (
         <ul>	
-            <li>
-                <div>
-                <img src="" alt="" />
-                </div>
-            </li>
+            {items.map((item) => (
+                <li key={item.objectID}>
+                    <a href={item.url}>
+                        {item.title}
+                    </a> 
+                </li>
+            ) )}
+           
         </ul>
 
     )
