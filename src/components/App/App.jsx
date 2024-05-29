@@ -8,32 +8,50 @@ export default function App() {
     const [images, setImages] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const [isError, setIsError] = useState(false);
+    const [page, setPage] = useState(1);
+    const [searchQuery, setSearchQuery] = useState("");
 
-    // useEffect(() => {
-    //     async function fetchImages() {
-    //         try {
-    //             setIsLoading(true);
-    //             setIsError(false);
-    //             setImages([]);
-    //             const fetchedImages = await getImages("javascript");
-    //             setImages(fetchedImages);
-    //         } catch (error) {
-    //             setIsError(true);
-    //         } finally {
-    //             setIsLoading(false);
-    //         }
-    //     }
-    //     fetchImages();
-    // }, []);
+    useEffect(() => {
+        if (searchQuery.trim() === "") {
+            return;
+        }
+
+        async function fetchImages() {
+            try {
+                setIsLoading(true);
+                setIsError(false);
+                const data = await getImages(searchQuery, page);
+                setImages((prevState) => [...prevState, ...data]);
+            } catch (error) {
+                setIsError(true);
+            } finally {
+                setIsLoading(false);
+            }
+        }
+
+        fetchImages();
+     }, [searchQuery, page]);
     
-    const handleSearch = () => {}
+    
+    const handleSearch = async (searchWord) => {
+        setSearchQuery(searchWord);
+        setPage(1);
+        setImages([]);
+    };
+    
+    const handleLoadMore = async () => {
+        setPage(page + 1);
+    }
 
     return (
         <>
-            <SearchBar onSearch={handleSearch} />
-            {isLoading && <p>Loading, please wait</p>}
+            <SearchBar onSearch={handleSearch}/>
+            
             {isError && <p>Oops, I did it again</p> }
             {images.length > 0 && <ImageGallery items={images} />}
+            {images.length > 0 && !isLoading && <button onClick={handleLoadMore}>Load more</button>}
+            {isLoading && <p>Loading, please wait</p>}
+            
         </>   
     )
 }
