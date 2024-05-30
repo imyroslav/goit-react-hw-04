@@ -1,6 +1,7 @@
 .gallery {
     display: flex;
     flex-wrap: wrap;
+    justify-content: space-around;
     gap: 20px;
     width: 1440px;
     padding-top: 24px;
@@ -10,5 +11,6 @@
 }
 
 .item {
+    width: 1005;
     flex-basis: calc((100%-60px)/4);
 }

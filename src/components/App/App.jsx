@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import ImageGallery from "../ImageGallery/ImageGallery";
 import SearchBar from "../SearchBar/SearchBar";
 import { getImages } from "../../unsplash-api";
+import ImageModal from "../ImageModal/ImageModal";
 
 export default function App() {
     const [images, setImages] = useState([]);
@@ -10,6 +11,8 @@ export default function App() {
     const [isError, setIsError] = useState(false);
     const [page, setPage] = useState(1);
     const [searchQuery, setSearchQuery] = useState("");
+    const [modalIsOpen, setIsOpen] = useState(false);
+    const [selectedImage, setSelectedImage] = useState("");
 
     useEffect(() => {
         if (searchQuery.trim() === "") {
@@ -43,14 +46,32 @@ export default function App() {
         setPage(page + 1);
     }
 
+    //modal - window
+    const openModal = (imageUrl) => {
+        setSelectedImage(imageUrl)
+        setIsOpen(true);
+    }
+
+    const closeModal = () => {
+        setSelectedImage("");
+        setIsOpen(false);
+    }
+
+
     return (
         <>
             <SearchBar onSearch={handleSearch}/>
             
             {isError && <p>Oops, I did it again</p> }
-            {images.length > 0 && <ImageGallery items={images} />}
+            {images.length > 0 && <ImageGallery items={images} onImageClick={openModal} />}
             {images.length > 0 && !isLoading && <button onClick={handleLoadMore}>Load more</button>}
             {isLoading && <p>Loading, please wait</p>}
+
+            <ImageModal
+                isOpen={modalIsOpen}
+                onClose={closeModal}
+                imageUrl={selectedImage}
+            />
             
         </>   
     )
