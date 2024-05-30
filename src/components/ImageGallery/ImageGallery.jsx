@@ -1,14 +1,13 @@
-
+import ImageCard from "../ImageCard/ImageCard";
+import css from "./ImageGallery.module.css";
 
 export default function ImageGallery({ items }) {
 
     return (
-        <ul>	
+        <ul className={css.gallery}>	
             {items.map((item) => (
-                <li key={item.objectID}>
-                    <a href={item.url}>
-                        {item.title}
-                    </a> 
+                <li className={css.item} key={item.id}>
+                   <ImageCard images={item} />
                 </li>
             ) )}
            

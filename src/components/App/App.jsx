@@ -20,8 +20,8 @@ export default function App() {
             try {
                 setIsLoading(true);
                 setIsError(false);
-                const data = await getImages(searchQuery, page);
-                setImages((prevState) => [...prevState, ...data]);
+                const results = await getImages(searchQuery, page);
+                setImages((prevState) => [...prevState, ...results]);
             } catch (error) {
                 setIsError(true);
             } finally {
@@ -33,7 +33,7 @@ export default function App() {
      }, [searchQuery, page]);
     
     
-    const handleSearch = async (searchWord) => {
+     const handleSearch = async (searchWord) => {
         setSearchQuery(searchWord);
         setPage(1);
         setImages([]);

@@ -7,12 +7,12 @@ export const getImages = async (searchWord, currentPage) => {
         params: {
             query: searchWord,
             page: currentPage,
-            hitsPerPage: 12
+            per_page: 12
         },
 
         headers: {
             Authorization: "Client-ID EA9CV8mw7EN6wwLh45_8uC3l9z6HtFJZ1SXqG58R4n0" 
         }
     });
-    return result.data;
+    return result.data.results;
 };
