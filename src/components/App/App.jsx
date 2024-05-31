@@ -1,10 +1,12 @@
 import { useState, useEffect } from "react";
-import css from "./App.module.css";
+// import css from "./App.module.css";
 import ImageGallery from "../ImageGallery/ImageGallery";
 import SearchBar from "../SearchBar/SearchBar";
 import { getImages } from "../../unsplash-api";
 import ImageModal from "../ImageModal/ImageModal";
 import ErrorMessage from "../ErrorMessage/ErrorMessage";
+import Loader from "../Loader/Loader";
+import LoadMoreBtn from "../LoadMoreBtn/LoadMoreBtn";
 
 
 export default function App() {
@@ -15,6 +17,7 @@ export default function App() {
     const [searchQuery, setSearchQuery] = useState("");
     const [modalIsOpen, setModalIsOpen] = useState(false);
     const [selectedImage, setSelectedImage] = useState("");
+    const [totalPage, setTotalPage] = useState(false);
 
     useEffect(() => {
         if (searchQuery.trim() === "") {
@@ -25,8 +28,9 @@ export default function App() {
             try {
                 setIsLoading(true);
                 setIsError(false);
-                const results = await getImages(searchQuery, page);
+                const { results, total }  = await getImages(searchQuery, page);
                 setImages((prevState) => [...prevState, ...results]);
+                setTotalPage(page < Math.ceil(total / 12))
             } catch (error) {
                 setIsError(true);
             } finally {
@@ -66,8 +70,9 @@ export default function App() {
             
             {isError && <ErrorMessage /> }
             {images.length > 0 && <ImageGallery items={images} onImageClick={openModal} />}
-            {images.length > 0 && !isLoading && <button className={css.lmbtn} onClick={handleLoadMore}>Load more</button>}
-            {isLoading && <p>Loading, please wait</p>}
+            {/* {images.length > 0 && !isLoading && <button className={css.lmbtn} onClick={handleLoadMore}>Load more</button>} */}
+            {totalPage && <LoadMoreBtn onClick={handleLoadMore} />}
+            {isLoading && <Loader />}
 
             <ImageModal
                 isOpen={modalIsOpen}

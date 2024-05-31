@@ -14,5 +14,5 @@ export const getImages = async (searchWord, currentPage) => {
             Authorization: "Client-ID EA9CV8mw7EN6wwLh45_8uC3l9z6HtFJZ1SXqG58R4n0" 
         }
     });
-    return result.data.results;
+    return result.data;
 };
