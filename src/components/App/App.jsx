@@ -5,13 +5,14 @@ import SearchBar from "../SearchBar/SearchBar";
 import { getImages } from "../../unsplash-api";
 import ImageModal from "../ImageModal/ImageModal";
 
+
 export default function App() {
     const [images, setImages] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const [isError, setIsError] = useState(false);
     const [page, setPage] = useState(1);
     const [searchQuery, setSearchQuery] = useState("");
-    const [modalIsOpen, setIsOpen] = useState(false);
+    const [modalIsOpen, setModalIsOpen] = useState(false);
     const [selectedImage, setSelectedImage] = useState("");
 
     useEffect(() => {
@@ -49,12 +50,12 @@ export default function App() {
     //modal - window
     const openModal = (imageUrl) => {
         setSelectedImage(imageUrl)
-        setIsOpen(true);
+        setModalIsOpen(true);
     }
 
     const closeModal = () => {
         setSelectedImage("");
-        setIsOpen(false);
+        setModalIsOpen(false);
     }
 
 
