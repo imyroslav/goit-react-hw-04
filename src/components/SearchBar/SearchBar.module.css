@@ -1,7 +1,7 @@
 .header {
     display: block;
     margin: 0;
-    background-color: #009dff;
+    background-color: hsl(132, 77%, 75%);
 }
 
 .form {
@@ -13,7 +13,7 @@
 
 .input {
     padding: 10px;
-    color:#133b3b;
+    color: black;
     font-size: medium;
     font-weight: 400;
     border: none;
@@ -22,6 +22,9 @@
 
 .btn {
     cursor: pointer;
+    border-radius: 5px;
+    border: 2px solid aliceblue;
+    background-color: aliceblue;
 }
 
 .btn:hover {

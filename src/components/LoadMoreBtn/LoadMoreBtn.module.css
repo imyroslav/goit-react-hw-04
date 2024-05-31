@@ -1,0 +1,22 @@
+.lmbtn {
+    cursor: pointer;
+    position: absolute;
+    height: 5vh;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: large;
+    font-weight: 600;
+    background-color: aliceblue;
+    border-radius: 5%;
+}
+
+.lmbtn:hover {
+    background-color: #a4f3b4;
+}
+
+.lmbtn:focus,
+button:focus-visible {
+    outline: 4px auto -webkit-focus-ring-color;
+}

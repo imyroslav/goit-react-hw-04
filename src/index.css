@@ -19,11 +19,12 @@ a:hover {
 }
 
 body {
-    background-color: #fafafa;
+    background-color: hsl(132, 77%, 90%);
     color: #212121;
     font-weight: 400;
     line-height: 1.2;
     letter-spacing: 0.02em;
+    padding-bottom: 20px;
 }
 
 h1 {
