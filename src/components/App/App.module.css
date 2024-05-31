@@ -1,0 +1,14 @@
+.lmbtn {
+    cursor: pointer;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.lmbtn:hover {
+    background-color: #a4f3b4;
+}
+
+.lmbtn:focus,
+button:focus-visible {
+    outline: 4px auto -webkit-focus-ring-color;
+}

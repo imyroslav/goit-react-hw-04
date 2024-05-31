@@ -1,4 +1,4 @@
-
+import toast, { Toaster } from "react-hot-toast";
 import css from "./SearchBar.module.css";
 
 export default function SearchBar({ onSearch }) {
@@ -9,8 +9,19 @@ export default function SearchBar({ onSearch }) {
         
         const form = event.target;
         const searchWord = form.elements.searchWord.value;
+
+        if (searchWord.trim() === "") {
+            toast('Please enter search word', {
+                    duration: 1500,
+                    style: {
+                        color: "white",
+                        background: "red"
+                    },
+                })
+                return;
+            }
+
         onSearch(searchWord);
-    
         event.target.reset();
         
     
@@ -26,9 +37,10 @@ export default function SearchBar({ onSearch }) {
                     autoFocus
                     placeholder="Search images and photos"
                 />
-                <button className={css.button} type="submit">Search</button>
+                <button className={css.btn} type="submit">Search</button>
   
-                </form>
+            </form>
+            <Toaster />
             </header>
         
         

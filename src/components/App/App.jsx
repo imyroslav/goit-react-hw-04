@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react";
-// import css from "./App.module.css";
+import css from "./App.module.css";
 import ImageGallery from "../ImageGallery/ImageGallery";
 import SearchBar from "../SearchBar/SearchBar";
 import { getImages } from "../../unsplash-api";
 import ImageModal from "../ImageModal/ImageModal";
+import ErrorMessage from "../ErrorMessage/ErrorMessage";
 
 
 export default function App() {
@@ -63,9 +64,9 @@ export default function App() {
         <>
             <SearchBar onSearch={handleSearch}/>
             
-            {isError && <p>Oops, I did it again</p> }
+            {isError && <ErrorMessage /> }
             {images.length > 0 && <ImageGallery items={images} onImageClick={openModal} />}
-            {images.length > 0 && !isLoading && <button onClick={handleLoadMore}>Load more</button>}
+            {images.length > 0 && !isLoading && <button className={css.lmbtn} onClick={handleLoadMore}>Load more</button>}
             {isLoading && <p>Loading, please wait</p>}
 
             <ImageModal
