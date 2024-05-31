@@ -23,18 +23,15 @@
 .btn {
     cursor: pointer;
     border-radius: 5px;
-    border: 2px solid aliceblue;
+    border: 0px solid aliceblue;
     background-color: aliceblue;
 }
 
 .btn:hover {
-    background-color: antiquewhite;
-    border: 2px solid antiquewhite;
-    border-radius: 3px;
+    background-color: hsl(132, 77%, 50%);
+    /* border: 2px solid hsl(132, 77%, 30%); */
+    border-radius: 5px;
 }
 
-/* .btn:focus,
-.btn:focus-visible {
-    outline: 4px auto -webkit-focus-ring-color;
-} */
+
 

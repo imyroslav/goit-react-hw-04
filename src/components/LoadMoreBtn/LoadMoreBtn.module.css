@@ -9,7 +9,9 @@
     font-size: large;
     font-weight: 600;
     background-color: aliceblue;
+    border: 3px solid hsl(132, 77%, 50%);
     border-radius: 5%;
+
 }
 
 .lmbtn:hover {

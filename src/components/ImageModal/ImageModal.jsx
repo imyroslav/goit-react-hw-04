@@ -24,7 +24,7 @@ const customStyles = {
 Modal.setAppElement('#root');
 
 export default function ImageModal({ isOpen, onClose, imageUrl }) {
-    return (
+  return (
         <Modal
             isOpen={isOpen}
             onRequestClose={onClose}
